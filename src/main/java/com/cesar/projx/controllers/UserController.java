@@ -40,7 +40,7 @@ public class UserController {
         return new ResponseEntity<Object>(usuario.get(), HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping("/cadastrar")//Resolvido o erro de "NO STATIC RESOURCE" adicionando o caminho ("/cadastrar")
     public ResponseEntity<Object> cadastrarUsuario(@RequestBody Usuario usuario) {
         if (usuario.getUsername() == null) {
             return ResponseHandler.generate("Username obrigatório.", HttpStatus.BAD_REQUEST);
@@ -49,7 +49,7 @@ public class UserController {
         }
 
         Usuario novoUsuario = usuarioRepository.save(usuario);
-        
+
         return ResponseHandler.generate("Usuário criado com sucesso.", HttpStatus.CREATED);
     }
 }
